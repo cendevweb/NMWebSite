@@ -1,0 +1,69 @@
+	<div id="pickedProject" class="container">
+		<div class="pickedHeader" ng-hide="!$parent.interPicked">
+			<button class="btn" ng-click="pickPreviousProject()"><i class="icon-left-arrow" aria-hidden="true"></i></button>
+			<button class="btn" ng-click="pickNextProject()"><i class="icon-right-arrow" aria-hidden="true"></i></button>
+			<button class="btn" ng-click="closePickedProject()"><i class="icon-close" aria-hidden="true"></i></button>
+	  	</div>
+			<img class="col-xl-7 animated" src="../../../assets/{{projet.image}}" alt="Card image cap" ng-hide="!$parent.interPicked" ng-class="{zoomIn: $parent.animateProject == 0, zoomOut: $parent.animateProject == 1}">
+			<div class="col-xl-5 animated pickedBody"  ng-hide="!$parent.interPicked" ng-class="{zoomIn: $parent.animateProject == 0, zoomOut: $parent.animateProject == 1}">
+				<h4 class="title">{{projet.title}}</h4>
+				<p class="libeller">{{projet.libeller}}</p>
+				<p class="info" style="margin-bottom: 0;" ng-show="projet.client">{{projet.clientType}} : <span>{{projet.client}}</span></p>
+				<p class="info" ng-show="projet.date" ng-if="!projet.date.includes(',')">Année : <span>{{projet.date}}</span></p>
+				<p class="info" ng-show="projet.date" ng-if="projet.date.includes(',')">Années : <span>{{projet.date}}</span></p>
+				<p class="text">{{projet.text}}</p>
+				<p class="info" ng-show="projet.type" ng-if="!projet.type.includes(',')">Catégorie : <span>{{projet.type}}</span></p>
+				<p class="info" ng-show="projet.type" ng-if="projet.type.includes(',')">Catégories : <span>{{projet.type}}</span></p>
+			</div>
+	</div>
+<style>
+	#pickedProject .pickedHeader{
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	#pickedProject img{
+		padding: 0;
+		height: auto;
+	}
+	#pickedProject .pickedBody{
+		float: right;
+		padding-left: 30px;
+		padding-right: 0;
+	}
+	#pickedProject .btn{
+		height: 29px;
+		width: 29px;
+		padding: 6px 4px;
+	}
+	#pickedProject .btn:last-child{
+		float: right;font-size: 1.2rem;;padding: 8px 4px 4px 4px;
+	}
+	#pickedProject .btn:nth-child(2){
+		padding: 6px 4px 6px 7px;
+	}
+	#pickedProject h4{
+		font-family: 'FuturaBook';
+		font-weight: 700;
+		margin-bottom: 5px;
+	}
+	#pickedProject .libeller{
+		font-family: 'badScript';
+		font-weight: 700;
+		font-size: 1.5rem;
+		padding-bottom: 15px;
+		border-bottom: 1px solid #000;
+		margin-bottom: 15px;
+	}
+	#pickedProject span{
+		color: #fe0072;
+	}
+	#pickedProject .info{
+		text-transform: capitalize;
+	}
+	#pickedProject p:not(:first-child){
+		margin-bottom: 20px
+	}
+	#pickedProject .animated{
+		 -webkit-animation-duration: 0.8s;
+	
+</style>

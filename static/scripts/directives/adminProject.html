@@ -1,0 +1,109 @@
+	<div id="pickedProject" class="container">
+		<div class="pickedHeader" ng-hide="!$parent.interPicked">
+			<button class="btn" ng-click="pickPreviousProject()"><i class="icon-left-arrow" aria-hidden="true"></i></button>
+			<button class="btn" ng-click="pickNextProject()"><i class="icon-right-arrow" aria-hidden="true"></i></button>
+			<button class="btn" ng-click="delete()">Supprimer</button>
+	  	</div>
+			<form>
+		  <div class="row">
+		    <div class="col">
+		      	<div class="form-group">
+			      <label>Titre :</label>
+			      <input type="text" ng-model="currentProject.title" class="form-control">
+			    </div>
+			    <div class="form-group">
+			      <label>Type :</label>
+			      <input type="text" ng-model="currentProject.type" class="form-control">
+			    </div>
+			    <div class="form-group">
+			      <label>Libeller :</label>
+			      <input type="text" ng-model="currentProject.tag" class="form-control">
+			    </div>
+			    <div class="form-group">
+			      <label>Type de client :</label>
+			      <input type="text" ng-model="currentProject.customerType" class="form-control">
+			    </div>
+			    <div class="form-group">
+			      <label>Client :</label>
+			      <input type="text" ng-model="currentProject.customer" class="form-control">
+			    </div>
+		    </div>
+		    <div class="col">
+			    <div class="form-group">
+			      <label>Date :</label>
+			      <input type="text" ng-model="currentProject.date" class="form-control">
+			    </div>
+			    <div class="form-group">
+				    <label>Image vignette :</label>
+				    <input type="text" ng-model="currentProject.thumb" class="form-control">
+				</div>
+				 <div class="form-group">
+				    <label>Image du détail :</label>
+				    <input type="text" ng-model="currentProject.image" class="form-control">
+				</div>
+			    <div class="form-group">
+			      <label>Description :</label>
+			      <textarea ng-model="currentProject.text" class="form-control" rows="6"></textarea>
+			    </div>
+		    </div>
+		  </div>
+	    <button type="button" class="btn" id="btnModif" ng-click="modif(currentProject)">Modifier</button>
+		</form>
+	</div>
+<style>
+	#pickedProject .pickedHeader{
+		width: 100%;
+		margin-bottom: 15px;
+		padding: 15px;
+	}
+	#pickedProject img{
+		padding: 0;
+		height: auto;
+	}
+	#pickedProject .pickedBody{
+		float: right;
+		padding-left: 30px;
+		padding-right: 0;
+	}
+	#pickedProject .btn{
+		height: 29px;
+		width: 29px;
+		padding: 6px 4px;
+	}
+	#pickedProject .btn:last-child{
+		float: right;width: auto;padding: 5px;
+	}
+	#pickedProject .btn:nth-child(2){
+		padding: 6px 4px 6px 7px;
+	}
+	#pickedProject h4{
+		font-family: 'FuturaBook';
+		font-weight: 700;
+		margin-bottom: 5px;
+	}
+	#pickedProject .libeller{
+		font-family: 'badScript';
+		font-weight: 700;
+		font-size: 1.5rem;
+		padding-bottom: 15px;
+		border-bottom: 1px solid #000;
+		margin-bottom: 15px;
+	}
+	#pickedProject span{
+		color: #fe0072;
+	}
+	#pickedProject .info{
+		text-transform: capitalize;
+	}
+	#pickedProject p:not(:first-child){
+		margin-bottom: 20px
+	}
+	#pickedProject .animated{
+		 -webkit-animation-duration: 0.8s;
+	}
+	#pickedProject #btnModif {
+	    width: auto;
+	    padding: 5px;
+	    float: left;
+	}
+</style>
