@@ -1,4 +1,5 @@
 
+# node modules folder
 node_modules
 
 # Logs
@@ -60,4 +61,7 @@ typings/
 # dotenv environment variables file
 .env
 
+<<<<<<< HEAD
+>>>>>>> d05f9817e5b7f95d47b215413c12ae433938d908
+=======
 >>>>>>> d05f9817e5b7f95d47b215413c12ae433938d908
