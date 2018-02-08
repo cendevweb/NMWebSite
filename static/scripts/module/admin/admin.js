@@ -5,17 +5,37 @@
 	.module('pucheApp')
 	.controller('adminCtrl', adminCtrl);
 
-	function adminCtrl(AdminService,$anchorScroll,$location,anchorSmoothScroll,$rootScope,$scope){
+	function adminCtrl(AdminService,$anchorScroll,$location,anchorSmoothScroll,$rootScope,$scope,$timeout){
 		const admin = this;
-		admin.h1Value = "Ajouter un projet";
-		admin.showedBlock = "add";
+		admin.h1Value = "Connexion à l'espace administration";
+		admin.showedBlock = "log";
+		$rootScope.showAlert = false;
 		$rootScope.interPicked = false;
 		admin.picked = {}
 		admin.socket = io.connect('/');
 		admin.socket.on('onProjectList', function (data) {
             $rootScope.projectList = data;
         });
-
+		$scope.$watch('admin.showPassword',function(newVal){ if(newVal) { admin.typeInput = 'text'; } else { admin.typeInput = 'password'; } });
+		admin.log = function(){
+			admin.socket.emit('logAdmin', {"username":admin.logUser,"password":admin.logPass});
+				
+			admin.socket.on('successLog', function(){
+				 $scope.$apply(function() { admin.showedBlock = "add", admin.h1Value = "Ajouter un projet", $rootScope.showAlert = true, $rootScope.alertMsg = "Connexion réussi", $rootScope.alertType='success'});
+				$timeout(function() {
+		   			 $scope.$apply(function() {$rootScope.showAlert = false});
+		   		}, 3000)				
+			})
+			admin.socket.on('failedLog', function(){
+				$scope.$apply(function() { $rootScope.showAlert = true, $rootScope.alertMsg = "Identifiants incorrects", $rootScope.alertType='danger'});
+				$timeout(function() {
+		   			 $scope.$apply(function() {$rootScope.showAlert = false});
+		   		}, 3000)
+			})
+			/*if(admin.logPass == "jetaimemonamour"){
+			}else{
+			}*/
+		}
 		admin.add = function(){
 			let projectInfo = {
 				"id": 1,
@@ -29,11 +49,14 @@
 				"thumb": admin.thumb,
 				"image": admin.image
 			}
-			console.log(projectInfo.thumb);
            	admin.socket.emit('addProject', projectInfo);
            	admin.socket.on('projectAdded', function (data) {
            	    $rootScope.projectList = data; 
-           		alert("projet ajouté avec succès");
+           		 $scope.$apply(function() { $rootScope.showAlert = true, $rootScope.alertMsg = "projet ajouté avec succès", $rootScope.alertType='success'});
+           		 $timeout(function() {
+		   			 $scope.$apply(function() {$rootScope.showAlert = false});
+		   		}, 3000)
+
 
 		    });
 		}
@@ -47,10 +70,10 @@
 			$rootScope.interPicked = true;
 			$location.hash('pickedProject');
 	        anchorSmoothScroll.scrollTo('pickedProject');
-	        $scope.$broadcast('someEvent');
+	        $scope.$broadcast('reloadSql');
 		}
 
 	};
-	adminCtrl.$inject = ['AdminService','$anchorScroll','$location','anchorSmoothScroll','$rootScope','$scope'];
+	adminCtrl.$inject = ['AdminService','$anchorScroll','$location','anchorSmoothScroll','$rootScope','$scope','$timeout'];
 
 })();
