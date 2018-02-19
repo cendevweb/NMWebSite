@@ -45,7 +45,7 @@
                     $rootScope.animateProject = 1;
                     $timeout(function() {
                         $scope.currentProject = response;
-                        var nextProjectString = $scope.currentProject.id-1;
+                        var nextProjectString = $scope.currentProject.id-2;
                         if (nextProjectString == 0){
                             nextProjectString = $scope.len
                         }
