@@ -4,11 +4,11 @@
 			<button class="btn" ng-click="pickNextProject()"><i class="icon-right-arrow" aria-hidden="true"></i></button>
 			<button class="btn" ng-click="closePickedProject()"><i class="icon-close" aria-hidden="true"></i></button>
 	  	</div>
-			<img class="col-xl-7 animated" src="../../../assets/{{projet.image}}" alt="Card image cap" ng-hide="!$parent.interPicked" ng-class="{zoomIn: $parent.animateProject == 0, zoomOut: $parent.animateProject == 1}">
-			<div class="col-xl-5 animated pickedBody"  ng-hide="!$parent.interPicked" ng-class="{zoomIn: $parent.animateProject == 0, zoomOut: $parent.animateProject == 1}">
+			<img class="col-7 animated" src="../../../assets/{{projet.image}}" alt="Card image cap" ng-hide="!$parent.interPicked" ng-class="{zoomIn: $parent.animateProject == 0, zoomOut: $parent.animateProject == 1}">
+			<div class="col-5 animated pickedBody"  ng-hide="!$parent.interPicked" ng-class="{zoomIn: $parent.animateProject == 0, zoomOut: $parent.animateProject == 1}">
 				<h4 class="title">{{projet.title}}</h4>
-				<p class="libeller">{{projet.libeller}}</p>
-				<p class="info" style="margin-bottom: 0;" ng-show="projet.client">{{projet.clientType}} : <span>{{projet.client}}</span></p>
+				<p class="libeller">{{projet.tag}}</p>
+				<p class="info" style="margin-bottom: 0;" ng-show="projet.customer != ''">{{projet.customerType}} : <span>{{projet.customer}}</span></p>
 				<p class="info" ng-show="projet.date" ng-if="!projet.date.includes(',')">Année : <span>{{projet.date}}</span></p>
 				<p class="info" ng-show="projet.date" ng-if="projet.date.includes(',')">Années : <span>{{projet.date}}</span></p>
 				<p class="text">{{projet.text}}</p>
@@ -56,9 +56,6 @@
 	}
 	#pickedProject span{
 		color: #fe0072;
-	}
-	#pickedProject .info{
-		text-transform: capitalize;
 	}
 	#pickedProject p:not(:first-child){
 		margin-bottom: 20px

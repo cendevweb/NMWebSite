@@ -13,15 +13,16 @@
 			<button class=" btn" ng-click="home.changeList('logo')">Logo</button>
 		</div>
 		<div  ng-class="{zoomIn: home.animateGalery == 0, zoomOut: home.animateGalery == 1}" class="animated" id="galery">
-			<div class="blockCat" ng-repeat="project in home.pickedList" ng-click="home.showPickedProject(project)">
+			<div class="blockCat" ng-repeat="project in pickedList" ng-click="home.showPickedProject(project)" ng-class="{'col-2':home.responsiveClass  === 1,'col-6':home.responsiveClass  === 2,'col-3':home.responsiveClass  === 3}">
 				<img ng-src="../../../assets/{{project.thumb}}" style="width: 100%">
-				<span>{{project.title}}<br/><p>{{project.libeller}}</p></span>
+				<span><p>{{project.title}}</p><p>{{project.tag}}</p></span>
 			</div>
 		</div>
 	</div>
 	<project projet="home.picked" ng-class="{isNotVisible: !interPicked, isVisible: interPicked}"></project>
+	<div class="back-to-top" ng-show="home.showTopBtn" ng-click="home.goToProjectTop()"><i class="fa fa-chevron-up"></i></div>
 </div>
-<footer class="row"><div class="col"><a href="https://www.linkedin.com/in/nad%C3%A8ge-maizonnier-064680a6/" target="_blank"><img src="../../../assets/picto-linkedin.svg"></a></div><div class="col-6"><a class='footerBtn hvr-underline-from-center' href="../../../assets/cv-nm.pdf" target="_blank">CV</a><p>-  06 17 88 90 98  -  maizonnier.nadege@gmail.com</p></div><div class="col"><p>© 2018 - </p><button class='footerBtn hvr-underline-from-center' ng-click="home.openModal('lg')">Mention légales</button></div></footer>
+<footer class="row"><div class="col"><a href="https://www.linkedin.com/in/nad%C3%A8ge-maizonnier-064680a6/" target="_blank"><img src="assets/picto-linkedin.svg"></a></div><div class="col-6"><a class='footerBtn hvr-underline-from-center' href="assets/cv-nm.pdf" target="_blank">CV</a><p>-  06 17 88 90 98  -  maizonnier.nadege@gmail.com</p></div><div class="col"><p>© 2018 - </p><button class='footerBtn hvr-underline-from-center' ng-click="home.openModal('lg')">Mention légales</button></div></footer>
 <style>
 	@font-face {
 		font-family: 'FuturaBook';
@@ -150,11 +151,11 @@
 		 -webkit-animation-delay: 0.3s;
 	}
 	.blockCat{
-		width: 20%;
 		display: inline-block;
 		position: relative;
 		cursor: pointer;
 		margin: -6px 0 0 0;
+		padding: 0;
 	}
 	.blockCat img{
 		display: block;
@@ -164,23 +165,29 @@
 		display:none;
 	}
 	.blockCat:hover span{
-		display: block;;
+		display: inline-flex;
+   	 	justify-content: center;
+  	  	align-items: center;
+  	  	flex-direction: column;
 		position:absolute;
 		top:0%;
 		left:0%;
 		width:100%;
 		height:100%;
-		padding:15% 5%;
-		font-size: 2.7rem;
 		text-align:center;
 		color:#fff;
-		font-family: 'FuturaBook';
 		background-color:rgba(62, 204, 135, 0.9);
 		z-index:1;
 	}
-	.blockCat span p{
+	.blockCat:hover span p:first-child{
+		font-size: 2rem;
+		font-family: 'FuturaBook';
+		padding: 0 5%;
+	}
+	.blockCat span p:nth-child(2){
 		font-family: 'badScript';
-		font-size: 1.8rem;
+		font-size: 1.7rem;
+		padding: 0 5%;
 	}
 	.blockCat:hover span {
 	   opacity: 1;
@@ -206,6 +213,29 @@
 	}
 	.row{
 		margin: 0;
+	}
+	.back-to-top{
+		position: fixed;
+	    top: 80%;
+	    right: 5%;
+	    border-radius: 20px;
+	    z-index: 15;
+	    width: 40px;
+	    height: 40px;
+	    background-color: #D4009D;
+	    padding: 5px;
+	    font-size: 1.7rem;
+	    text-align: center;
+	    line-height: 30px;
+	    color: #fff;
+	}
+	.back-to-top:hover{
+		transition: all .2s ease-in-out;
+		transform: scale(1.1);
+		cursor: pointer;
+	}
+	.back-to-top:hover svg{
+		height: 95%;
 	}
 	footer{
 		margin-top: 30px !important;
