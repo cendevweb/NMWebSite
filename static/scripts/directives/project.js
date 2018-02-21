@@ -12,7 +12,8 @@
         controller : function($scope,PucheService,anchorSmoothScroll,$anchorScroll,$location,$rootScope,$timeout){
             $scope.animateProject = 0
             $scope.closePickedProject = function(){
-                $location.hash('projectList');
+                 history.pushState("", document.title, window.location.pathname
+                                                       + window.location.search);
                 // $rootScope.animateProject = 1;
                 // $timeout(function() {
                     $rootScope.interPicked = false;

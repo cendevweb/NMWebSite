@@ -9,6 +9,7 @@
 		const admin = this;
 		admin.h1Value = "Connexion à l'espace administration";
 		admin.showedBlock = "log";
+		admin.showMenu = false;
 		$rootScope.showAlert = false;
 		$rootScope.interPicked = false;
 		admin.picked = {}
@@ -21,7 +22,7 @@
 			admin.socket.emit('logAdmin', {"username":admin.logUser,"password":admin.logPass});
 				
 			admin.socket.on('successLog', function(){
-				 $scope.$apply(function() { admin.showedBlock = "add", admin.h1Value = "Ajouter un projet", $rootScope.showAlert = true, $rootScope.alertMsg = "Connexion réussi", $rootScope.alertType='success'});
+				 $scope.$apply(function() { admin.showedBlock = "add", admin.h1Value = "Ajouter un projet",admin.showMenu = true, $rootScope.showAlert = true, $rootScope.alertMsg = "Connexion réussi", $rootScope.alertType='success'});
 				$timeout(function() {
 		   			 $scope.$apply(function() {$rootScope.showAlert = false});
 		   		}, 3000)				
@@ -61,8 +62,10 @@
 		    });
 		}
 		admin.changeBlock = function(block,title){
-			admin.showedBlock = block;
-			admin.h1Value = title;
+			if(admin.showedBlock != "log"){
+				admin.showedBlock = block;
+				admin.h1Value = title;
+			}
 		}
 		admin.showPickedProject = function(project){
 			AdminService.setPickedProject(project)

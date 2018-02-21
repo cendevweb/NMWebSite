@@ -1,7 +1,7 @@
 <header>
 	<img src="../../../assets/fondheader.png" alt="" class="backgroundHeader">
 	<img src="../../../assets/logo-nm.svg" alt="" id="logoNm">
-	<nav>
+	<nav ng-show="admin.showMenu == true">
 		<button class=" btn" ng-click="admin.changeBlock('add','Ajouter un projet')">Nouveau projet</button>
 		<button class=" btn" ng-click="admin.changeBlock('list','Mes projets')">Mes projets</button>
 	</nav>
