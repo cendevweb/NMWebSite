@@ -51,7 +51,7 @@
                 $scope.socket.on('projectDeleted', function (data) {
                     $rootScope.projectList = {}; 
                     $rootScope.projectList = data;
-                    $scope.$apply(function() { $scope.showInnerAlert = true, $scope.alertMsg = "projet supprimer avec succès", $scope.alertType='success'});
+                    $scope.$apply(function() { $scope.showInnerAlert = true, $scope.alertMsg = "projet supprimer avec succès", $scope.alertType='success',$scope.currentProject={}});
                     $timeout(function() {
                          $scope.$apply(function() {$scope.showInnerAlert = false});
                     }, 3000)
