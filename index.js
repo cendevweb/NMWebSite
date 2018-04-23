@@ -41,6 +41,7 @@ app.use(bodyParser.urlencoded({
 // }))
 app.use(express.static(path.resolve('static')))
 app.use('/nodemod', express.static(__dirname + '/node_modules/'));
+app.use('/style', express.static(__dirname + '/static/style/'));
 
 var connection  = mysql.createConnection({
   host     : 'localhost',
